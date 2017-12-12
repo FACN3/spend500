@@ -21,13 +21,11 @@ CREATE TABLE items (
 
 );
 
-
 CREATE TABLE user_transactions (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER REFERENCES users(id),
-	t_time TIMESTAMP 
+	t_time TIMESTAMP
 );
-
 
 CREATE TABLE transaction_items (
 	id SERIAL PRIMARY KEY,
@@ -50,18 +48,12 @@ CREATE TABLE reviews (
 	rev_time TIMESTAMP
 );
 
-
-
-INSERT INTO items(name, description, price) VALUES
-('shoes', 'hoslacks stinking shoes', 20.00),
-('picture frame', 'beautiful group picture of FACN3', 17.81),
-('1918 smoking pipe','made with American Mahogany', 99.00 ),
-('face cream', 'Rejuvinating face cream', 42.15),
-('Cheese', 'Five year old cheddar', 14.07);
-
-
-
-
+INSERT INTO items(name, description, price, image) VALUES
+('Shoes', 'hoslacks stinking shoes', 20.00, 'https://i.pinimg.com/originals/42/34/dd/4234dd092aff7a1a3d61fc71dbb9dc74.jpg'),
+('Picture Frame', 'beautiful group picture of FACN3', 17.81, 'https://n.nordstrommedia.com/ImageGallery/store/product/Zoom/10/_6419170.jpg?fit=fill&fm=jpg&dpr=2&h=368&w=240&quality=45&tradecacheforcash=yes'),
+('1918 Smoking Pipe','made with American Mahogany', 99.00, 'https://www.dhresource.com/0x0s/f2-albu-g5-M00-9C-35-rBVaJFj9ZeSAZBdcAADSgO8Z1zg514.jpg/e-pipe-618-health-smoking-pipe-electronic.jpg'),
+('Face Cream', 'Rejuvinating face cream', 42.15, 'https://www.bobbibrowncosmetics.com/media/export/cms/products/415x415/bb_prod_E65X_415x415_0.jpg'),
+('Cheese', 'Five year old cheddar', 14.07, 'http://www.eatthis.com/wp-content/uploads//media/images/ext/855666897/shredded-swiss-cheese.jpg');
 
 
 COMMIT ;
