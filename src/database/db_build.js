@@ -10,8 +10,8 @@ const build = (cb)=>{connection.query(sql, (error, result)=>{
 	}
 	cb(null,result);
 	connection.end();
-		}); 
-	};
+}); 
+};
 
 build((error, result)=>{
 	if(error){
