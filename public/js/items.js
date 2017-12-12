@@ -15,7 +15,7 @@ function fetch(url, method, callback) {
   xhr.send();
 }
 
-fetch('/', 'GET' function(err, items) {
+fetch('/items', 'GET', function(err, items) {
   if (err) {
     console.log(err);
   } else {
