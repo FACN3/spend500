@@ -1,0 +1,38 @@
+/* HOME PAGE (before Login) */
+.home__nav {
+  text-align: right;
+  display: block;
+}
+
+.home__content {
+  background-color: #76abcc;
+  text-align: center;
+}
+
+.content__items {
+  width: 100%;
+  border: 2px solid black;
+  text-align: center;
+  border-collapse: collapse;
+  margin-top: 5%;
+}
+
+.content--image {
+  display: block;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3%;
+}
+
+.content__items--header {
+  margin: 5%;
+  padding: 1%;
+  border: 1px solid grey;
+}
+
+.content__items--col {
+  max-width: 4vw;
+  padding: 1%;
+  border: 1px solid grey;
+}
