@@ -4,6 +4,7 @@ function fetch(url, method, data, callback) {
     if (xhr.readyState == 4 && xhr.status !== 200) {
       callback(xhr.responseText);
     } else if (xhr.readyState == 4 && xhr.status === 200) {
+      console.log(xhr.responseText);
       callback(null, JSON.parse(xhr.responseText));
     }
   };
@@ -13,7 +14,7 @@ function fetch(url, method, data, callback) {
 
 document.querySelector('.signIn').addEventListener('submit', function(e) {
   e.preventDefault();
-  console.log(e);
+  // console.log(e);
   // document.querySelector('')
 });
 
@@ -25,16 +26,25 @@ document.querySelector('.signUp').addEventListener('submit', function(e) {
   ) {
     document.querySelector('#rules').textContent = 'passwords do not match';
   } else {
-    var dataArr = [];
     document.querySelector('#rules').textContent = '';
-    dataArr.push(document.querySelector('#usernameSignUp').value);
-    dataArr.push(document.querySelector('#passwordSignUp').value);
-    dataArr.push(document.querySelector('#firstName').value);
-    dataArr.push(document.querySelector('#lastName').value);
-    dataArr.push(document.querySelector('#address').value);
-    console.log(dataArr);
+    var user = document.querySelector('#usernameSignUp').value;
+    var pass = document.querySelector('#passwordSignUp').value;
+    var first = document.querySelector('#firstName').value;
+    var last = document.querySelector('#lastName').value;
+    var address = document.querySelector('#address').value;
+    var query =
+      'user=' +
+      user +
+      '&pass=' +
+      pass +
+      '&first=' +
+      first +
+      '&last=' +
+      last +
+      '&address=' +
+      address;
 
-    fetch('/createuser', 'post', dataArr, function(err, res) {
+    fetch('/createuser', 'post', query, function(err, res) {
       if (err) {
         console.log('error with', err);
       } else {
