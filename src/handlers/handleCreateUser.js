@@ -47,10 +47,11 @@ const handleCreateUser = (req, res) => {
               });
             }
           });
-        }
-      }
+
+
     });
-  });
+  };
+
   req.on('err', () => {
     handleError(req, res, 404);
   });
@@ -76,10 +77,12 @@ const encrypt = (str, callback) => {
   });
 };
 
+
 const createjwt = userid => {
   const header = { alg: 'SHA256', type: 'JWT' };
   const jwtData = { userid: userid, state: 'logged_in' };
   const token = jwt.sign(jwtData, 'secret', { expiresIn: '1h' });
+
   return token;
 };
 
