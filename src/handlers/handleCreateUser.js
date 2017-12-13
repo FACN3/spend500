@@ -24,9 +24,9 @@ const handleCreateUser = (req, res) => {
       } else {
         if (result == true) {
           res.writeHead(200, { 'Content-Type': 'text/html' });
-          res.end('username already exists');
+          res.end(JSON.stringify('username already exists'));
         } else {
-          encrypt(req, res, pass, (error, hash) => {
+          encrypt(pass, (error, hash) => {
             if (error) {
               handleError(req, res, 500);
             } else {
@@ -34,7 +34,7 @@ const handleCreateUser = (req, res) => {
                 if (error) {
                   console.log('error in creating user', error);
                 } else {
-                  const userid = JSON.parse(result);
+                  const userid = result[0].id;
                   console.log(userid);
                   const token = createjwt(userid);
                   console.log('token is ', token);
@@ -42,25 +42,26 @@ const handleCreateUser = (req, res) => {
                     'Content-Type': 'text/html',
                     'set-cookie': `token=${token}`
                   });
-                  res.end(JSON.stringify(result));
+                  res.end('login successfull');
                 }
               });
             }
           });
-        }
-      }
+
+
     });
-  });
+  };
+
   req.on('err', () => {
     handleError(req, res, 404);
   });
 }; 
 
-const encrypt = (req, res, str, callback) => {
+const encrypt = (str, callback) => {
   console.log('in encrypt');
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
-      handleError(req, res, 500);
+      callback(err);
     } else {
       console.log('in gensalt salt is', salt);
       bcrypt.hash(str, salt, (err, res) => {
@@ -68,7 +69,7 @@ const encrypt = (req, res, str, callback) => {
           console.log('errored in hash with ', err);
         } else {
           callback(null, res);
-          //createuser in datbase
+
           //createjwt
         }
       });
@@ -76,6 +77,13 @@ const encrypt = (req, res, str, callback) => {
   });
 };
 
-const createjwt = (userid, callback) => {};
+
+const createjwt = userid => {
+  const header = { alg: 'SHA256', type: 'JWT' };
+  const jwtData = { userid: userid, state: 'logged_in' };
+  const token = jwt.sign(jwtData, 'secret', { expiresIn: '1h' });
+
+  return token;
+};
 
 module.exports = handleCreateUser;
