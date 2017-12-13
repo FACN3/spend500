@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const qs = require('querystring');
 const handleError = require('./handleError');
 const userexists = require('../database/queries/userexists');
-const createuser = require('../database/queries/createuser');
+const createUser = require('../database/queries/createUser');
 const jwt = require('jsonwebtoken');
 
 const handleCreateUser = (req, res) => {
@@ -26,11 +26,11 @@ const handleCreateUser = (req, res) => {
           res.writeHead(200, { 'Content-Type': 'text/html' });
           res.end('username already exists');
         } else {
-          encrypt(req, res, pass, (error, result) => {
+          encrypt(req, res, pass, (error, hash) => {
             if (error) {
               handleError(req, res, 500);
             } else {
-              createuser(user, first, last, result, (error, result) => {
+              createUser(user, first, last, address, hash, (error, result) => {
                 if (error) {
                   console.log('error in creating user', error);
                 } else {

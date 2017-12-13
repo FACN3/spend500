@@ -12,16 +12,17 @@ const router = (req, res) => {
     handleHome(req, res);
   } else if (url === '/createuser') {
     handleCreateUser(req, res);
+  } else if (url === '/login') {
+    handleLogIn(req, res);
   } else if (url === '/buy') {
     handleBuy(req, res);
   } else if (url === '/items') {
     handleItems(req, res);
   } else if (url === '/history') {
-    handleHistory(req, res)
+    handleHistory(req, res);
   } else {
     handleStatic(req, res);
   }
-}
-
+};
 
 module.exports = router;
