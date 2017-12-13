@@ -11,6 +11,8 @@ const displayItems = (cb) => {
       }
     }
   )
-}
+};
+
+
 
 module.exports = displayItems;

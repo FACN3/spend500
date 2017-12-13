@@ -15,11 +15,11 @@ const build = (cb)=>{connection.query(sql, (error, result)=>{
 
 // Uncomment function below for rebuilding the database.
 
-/*build((error, result)=>{
+build((error, result)=>{
 if(error){
 		throw error; 	}
  	console.log('Build Successful');
-});*/
+});
 
 
 module.exports = build;
