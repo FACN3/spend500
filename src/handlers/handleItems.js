@@ -9,6 +9,6 @@ const handleItems = (req, res) => {
       res.end(stringItems);
     }
   });
-}
+};
 
 module.exports = handleItems;

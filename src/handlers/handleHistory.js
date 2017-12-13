@@ -7,4 +7,4 @@ const handleHistory = (req, res) => {
   const cookie = req.headers.cookie;
   console.log(cookie);
   // showHistory()
-}
+};
