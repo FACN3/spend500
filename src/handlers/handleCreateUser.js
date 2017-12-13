@@ -1,4 +1,4 @@
-const bycrpt = require('bcryptjs');
+const bycrypt = require('bcryptjs');
 
 const handleCreateUser = (req, res) => {
   // console.log(req.url);
