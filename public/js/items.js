@@ -39,6 +39,7 @@ function renderHome(arr) {
     var buy = document.createElement('a');
     buy.setAttribute('href', '#');
     buy.setAttribute('class', 'items__purchase-link');
+    buy.setAttribute('id', 'itemID_' + item.id);
     buy.textContent = "Add to Cart";
     buyContainer.appendChild(buy);
     itemContainer.appendChild(buyContainer);
