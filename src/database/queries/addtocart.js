@@ -11,7 +11,7 @@ const addtocart = (user_id, item_id,cb)=>{
 		});
 };
 
-addtocart(1,2,(error,result)=>{
+addtocart(3,4,(error,result)=>{
 	if (error) {console.log(error);}
 	console.log(result);
 });

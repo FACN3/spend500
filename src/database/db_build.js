@@ -17,12 +17,12 @@ const build = cb => {
 
 
 
-// build((error, result) => {
-//   if (error) {
-//     throw error;
-//   }
-//   console.log('Build Successful');
-// });
+build((error, result) => {
+  if (error) {
+    throw error;
+  }
+  console.log('Build Successful');
+});
 
 
 module.exports = build;
