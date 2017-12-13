@@ -7,6 +7,7 @@ const handleBuy = require('./handlers/handleBuy');
 const handleAuth = require('./handlers/handleAuth');
 const auth_routes = ['/buy', '/cart', '/items', '/history'];
 const handleCart = require('./handlers/handleCart');
+const handleDeleteItem = require('./handlers/handleDeleteItem');
 
 
 const router = (req, res) => {

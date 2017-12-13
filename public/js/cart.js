@@ -4,6 +4,7 @@ function renderCart(items) {
 	items.forEach(function (item) {
 		var row = document.createElement('tr');
 
+
 		var name = document.createElement('td');
 		name.setAttribute('class', 'content__items--col');
 		name.textContent = item.name;
@@ -22,12 +23,15 @@ function renderCart(items) {
 		var del = document.createElement('td');
 		var anchor = document.createElement('a');
 		var inner = document.createElement('i');
+		anchor.setAttribute('id','item_'+ item.id);
+		del.setAttribute('id','item_'+ item.id);
 		anchor.setAttribute('href','#');
 		inner.setAttribute('class', 'fa fa-trash');
 		anchor.appendChild(inner);
 		del.setAttribute('class', 'content__items--col');
 		del.appendChild(anchor);
 		row.appendChild(del);
+
 
 
 
@@ -48,6 +52,18 @@ function renderCart(items) {
 	table.appendChild(last_row);
 
 
+}
+
+
+document.addEventListener('click',deleteItem(this));
+
+
+function deleteItem(element) {
+	var id = element.id;
+	fetchGET('/del', function(error, items) {
+		if (error) {console.log(error);}
+		alert('Item deleted successfully');
+	});
 }
 
 
