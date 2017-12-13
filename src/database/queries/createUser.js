@@ -1,6 +1,6 @@
 const connection = require('../db_connection');
 
-const createuser = (username, firstname, lastname, address, password, cb) => {
+const createUser = (username, firstname, lastname, address, password, cb) => {
   connection.query(
     `INSERT INTO users(username, firstname, lastname,address, password)
 		VALUES($1,$2,$3,$4,$5)`,
@@ -14,18 +14,18 @@ const createuser = (username, firstname, lastname, address, password, cb) => {
   );
 };
 
-createuser(
-  'hoslack',
-  'hoslack',
-  'hoslack',
-  'Nairobi',
-  'kkkk',
-  (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log(result);
-  }
-);
+// createUser(
+//   'hoslack',
+//   'hoslack',
+//   'hoslack',
+//   'Nairobi',
+//   'kkkk',
+//   (error, result) => {
+//     if (error) {
+//       console.log(error);
+//     }
+//     console.log(result);
+//   }
+// );
 
 module.exports = createUser;
