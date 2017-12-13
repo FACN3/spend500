@@ -34,18 +34,16 @@ const handleCreateUser = (req, res) => {
                 if (error) {
                   console.log('error in creating user', error);
                 } else {
-                  const userid = JSON.parse(result);
+                  const userid = result[0].id;
                   console.log(userid);
-                  const token = createjwt(userid)
-                  console.log('token is ',token)
+                  const token = createjwt(userid);
+                  console.log('token is ', token);
                   res.writeHead(200, {
                     'Content-Type': 'text/html',
-                    'set-cookie':`token=${token}`
+                    'set-cookie': `token=${token}`
                   });
-                  res.end(JSON.stringify(result));
-
-                });
-              }
+                  res.end('login successfull');
+                }
               });
             }
           });
@@ -79,10 +77,12 @@ const encrypt = (str, callback) => {
   });
 };
 
-const createjwt = (userid) => {
+
+const createjwt = userid => {
   const header = { alg: 'SHA256', type: 'JWT' };
-  const jwtData = {userid:userid,state:'logged_in'}
-  const token = jwt.sign(jwtData,'secret',{expiresIn:'1h'})
+  const jwtData = { userid: userid, state: 'logged_in' };
+  const token = jwt.sign(jwtData, 'secret', { expiresIn: '1h' });
+
   return token;
 };
 
