@@ -4,7 +4,7 @@ function fetchGET(url, callback) {
     if (xhr.readyState === 4 && xhr.status === 200) {
       // console.log(xhr.responseText);
       callback(null, JSON.parse(xhr.responseText));
-    } else if (xhr.readyState === 4 && xhr.status !== 200){
+    } else if (xhr.readyState === 4 && xhr.status !== 200) {
       callback(xhr.status);
       console.log(xhr.readyState, xhr.status);
     } else {
@@ -21,7 +21,7 @@ function fetchPOST(url, data, callback) {
     if (xhr.readyState == 4 && xhr.status !== 200) {
       callback(xhr.responseText);
     } else if (xhr.readyState == 4 && xhr.status === 200) {
-      callback(null, JSON.parse(xhr.responseText));
+      callback(null, xhr.responseText);
     }
   };
   xhr.open('POST', url);
