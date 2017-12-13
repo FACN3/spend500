@@ -5,6 +5,7 @@ const handleStatic = require('./handlers/handleStatic');
 const handleCreateUser = require('./handlers/handleCreateUser');
 const handleBuy = require('./handlers/handleBuy');
 const handleCart = require('./handlers/handleCart');
+const handleDeleteItem = require('./handlers/handleDeleteItem');
 
 const router = (req, res) => {
   const url = req.url;
@@ -23,7 +24,10 @@ const router = (req, res) => {
     handleHistory(req, res);
   } else if (url === '/cart') {
     handleCart(req, res);
-  } else {
+  }else if (url === '/del') {
+    handleDeleteItem(req, res);
+  } 
+  else {
     handleStatic(req, res);
   }
 };
