@@ -11,6 +11,7 @@ const handleCreateUser = (req, res) => {
   req.on('data', chunk => {
     data += chunk;
   });
+
   req.on('end', () => {
     const pass = qs.parse(data).pass;
     const user = qs.parse(data).user;
@@ -47,15 +48,15 @@ const handleCreateUser = (req, res) => {
               });
             }
           });
-
-
+        }
+      }
     });
-  };
+  });
 
   req.on('err', () => {
     handleError(req, res, 404);
   });
-}; 
+};
 
 const encrypt = (str, callback) => {
   console.log('in encrypt');
@@ -69,20 +70,16 @@ const encrypt = (str, callback) => {
           console.log('errored in hash with ', err);
         } else {
           callback(null, res);
-
-          //createjwt
         }
       });
     }
   });
 };
 
-
 const createjwt = userid => {
   const header = { alg: 'SHA256', type: 'JWT' };
   const jwtData = { userid: userid, state: 'logged_in' };
   const token = jwt.sign(jwtData, 'secret', { expiresIn: '1h' });
-
   return token;
 };
 
