@@ -3,6 +3,7 @@ const handleItems = require('./handlers/handleItems');
 const handleHistory = require('./handlers/handleHistory');
 const handleStatic = require('./handlers/handleStatic');
 const handleCreateUser = require('./handlers/handleCreateUser');
+const handleBuy = require('./handlers/handleBuy');
 
 const router = (req, res) => {
   const url = req.url;
@@ -11,6 +12,8 @@ const router = (req, res) => {
     handleHome(req, res);
   } else if (url === '/createuser') {
     handleCreateUser(req, res);
+  } else if (url === '/buy') {
+    handleBuy(req, res);
   } else if (url === '/items') {
     handleItems(req, res);
   } else if (url === '/history') {
