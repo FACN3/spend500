@@ -11,7 +11,7 @@ const showHistory = (user_id, cb) => {
         return cb(err);
       } else {
         const transactions = result.rows.id;
-        transactions.forEach((trans) => {
+        transactions.forEach(trans => {
           connection.query(
             `SELECT transaction_items.item_id,items.name FROM transaction_items,items
             WHERE transaction_id = $1 AND items.id=transaction_items.item_id`,
@@ -21,13 +21,13 @@ const showHistory = (user_id, cb) => {
                 console.log(err);
                 return cb(err);
               } else {
-                console.log(result);
+                // console.log(result);
                 return cb(null, result);
               }
             }
-          )
-        })
+          );
+        });
       }
     }
-  )
-}
+  );
+};

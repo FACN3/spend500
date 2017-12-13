@@ -43,7 +43,7 @@ const handleCreateUser = (req, res) => {
                     'Content-Type': 'text/html',
                     'set-cookie': `token=${token}`
                   });
-                  res.end('login successfull');
+                  res.end(JSON.stringify('login successful'));
                 }
               });
             }
