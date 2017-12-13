@@ -7,3 +7,8 @@ const del_item = (item_id, cb)=>{
 		cb(null, result); 
 	});
 };
+
+del_item(2, (error,result)=>{
+	if (error) {console.log(error);}
+	console.log(result);
+});

@@ -10,3 +10,7 @@ const showcart = (username,cb)=>{
 		});
 };
 
+showcart('hoslack',(error,result)=>{
+	if (error) {console.log(error);}
+	console.log(result);
+});
