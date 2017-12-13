@@ -9,15 +9,16 @@ const userexists = (username,cb)=>{
 			}
 			result = result.rows;
 			let isTrue = false;
-			if(result.length!==0){ isTrue=true;}else{isTrue=false;}	
+			if(result.length!==0){ isTrue=true;}else{isTrue=false;}
 			cb(null,isTrue);
 
 		});
 
 };
 
-userexists('hoslck',(error,result)=>{
-	if (error) {console.log(error);}
-	console.log(result);
-});
+// userexists('hoslck',(error,result)=>{
+// 	if (error) {console.log(error);}
+// 	console.log(result);
+// });
 
+module.exports = userexists;
