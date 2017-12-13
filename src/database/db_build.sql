@@ -23,27 +23,27 @@ CREATE TABLE items (
 
 CREATE TABLE user_transactions (
 	id SERIAL PRIMARY KEY,
-	user_id INTEGER REFERENCES users(id),
+	user_id INTEGER REFERENCES users(id) on delete cascade on update cascade,
 	t_time TIMESTAMP
 );
 
 CREATE TABLE transaction_items (
 	id SERIAL PRIMARY KEY,
-	transaction_id INTEGER REFERENCES user_transactions(id),
-	item_id INTEGER REFERENCES items(id)
+	transaction_id INTEGER REFERENCES user_transactions(id) on delete cascade on update cascade,
+	item_id INTEGER REFERENCES items(id) on delete cascade on update cascade
 
 );
 
 CREATE TABLE cart (
 	id SERIAL PRIMARY KEY,
-	user_id INTEGER REFERENCES users(id),
-	item_id INTEGER REFERENCES items(id)
+	user_id INTEGER REFERENCES users(id) on delete cascade on update cascade,
+	item_id INTEGER REFERENCES items(id) on delete cascade on update cascade
 	);
 
 CREATE TABLE reviews (
 	id SERIAL PRIMARY KEY,
-	user_id INTEGER REFERENCES users(id),
-	item_id INTEGER REFERENCES items(id),
+	user_id INTEGER REFERENCES users(id)on delete cascade on update cascade,
+	item_id INTEGER REFERENCES items(id)on delete cascade on update cascade,
 	content TEXT NOT NULL,
 	rev_time TIMESTAMP
 );

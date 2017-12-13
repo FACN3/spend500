@@ -8,3 +8,9 @@ const del_cart = (username, cb)=>{
 			cb(null, result);
 		});
 };
+
+
+del_cart('hoslack', (error,result)=>{
+	if (error) {console.log(error);}
+	console.log(result);
+});
