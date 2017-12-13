@@ -5,8 +5,9 @@ const handleStatic = require('./handlers/handleStatic');
 const handleCreateUser = require('./handlers/handleCreateUser');
 const handleBuy = require('./handlers/handleBuy');
 const handleAuth = require('./handlers/handleAuth');
-
 const auth_routes = ['/buy', '/cart', '/items', '/history'];
+const handleCart = require('./handlers/handleCart');
+
 
 const router = (req, res) => {
   const url = req.url;
@@ -32,6 +33,8 @@ const router = (req, res) => {
           handleItems(req, res);
         } else if (url === '/history') {
           handleHistory(req, res);
+        } else if (url === '/cart') {
+          handleCart(req, res);
         }
       }
   } else {
