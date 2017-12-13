@@ -34,7 +34,14 @@ const handleCreateUser = (req, res) => {
                 if (error) {
                   console.log('error in creating user', error);
                 } else {
-                  res.writeHead(200, { 'Content-Type': 'text/html' });
+                  const userid = JSON.parse(result);
+                  console.log(userid);
+                  const token = createjwt(userid);
+                  console.log('token is ', token);
+                  res.writeHead(200, {
+                    'Content-Type': 'text/html',
+                    'set-cookie': `token=${token}`
+                  });
                   res.end(JSON.stringify(result));
                 }
               });
@@ -47,7 +54,7 @@ const handleCreateUser = (req, res) => {
   req.on('err', () => {
     handleError(req, res, 404);
   });
-};
+}; 
 
 const encrypt = (req, res, str, callback) => {
   console.log('in encrypt');

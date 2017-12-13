@@ -14,9 +14,6 @@ const build = cb => {
 };
 
 // Uncomment function below for rebuilding the database.
-
-
-
 // build((error, result) => {
 //   if (error) {
 //     throw error;
