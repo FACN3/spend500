@@ -55,5 +55,9 @@ INSERT INTO items(name, description, price, image) VALUES
 ('Face Cream', 'Rejuvinating face cream', 42.15, 'https://www.bobbibrowncosmetics.com/media/export/cms/products/415x415/bb_prod_E65X_415x415_0.jpg'),
 ('Cheese', 'Five year old cheddar', 14.07, 'http://www.eatthis.com/wp-content/uploads//media/images/ext/855666897/shredded-swiss-cheese.jpg');
 
+INSERT INTO users(username, firstname, lastname, address, balance, password) VALUES ('admin','ad','min', '1 nazareth avenue', 500.00,'inserthashhere'),
+('user','joe','bloggs','1 the white house',500.00,'inserthashhere'),
+('mynah','mynah','marie','fac apartment',500.00,'inserthashere');
+
 
 COMMIT ;
