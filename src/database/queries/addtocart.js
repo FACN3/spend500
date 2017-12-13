@@ -11,5 +11,9 @@ const addtocart = (user_id, item_id,cb)=>{
 		});
 };
 
+addtocart(1,2,(error,result)=>{
+	if (error) {console.log(error);}
+	console.log(result);
+});
 
 module.exports = addtocart;
