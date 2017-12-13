@@ -1,8 +1,11 @@
 const displayItems = require('../database/queries/displayItems');
+const handleError = require('./handleError');
 
 const handleItems = (req, res) => {
   displayItems((err, items) => {
-    if (err) console.log(err);
+    if (err) {
+      handleError(req, res, err);
+    }
     else {
       const stringItems = JSON.stringify(items);
       res.writeHead(200, { 'Content-Type': 'application/json' });

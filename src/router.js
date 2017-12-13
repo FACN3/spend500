@@ -2,14 +2,16 @@ const handleHome = require('./handlers/handleHome');
 const handleItems = require('./handlers/handleItems');
 const handleHistory = require('./handlers/handleHistory');
 const handleStatic = require('./handlers/handleStatic');
-const handleCreateUser = require('./handlers/handleCreateUser');
+const { handleCreateUser } = require('./handlers/handleCreateUser');
+const handleLogIn = require('./handlers/handleLogIn');
+const handleLogout = require('./handlers/handleLogout');
 const handleBuy = require('./handlers/handleBuy');
 const handleAuth = require('./handlers/handleAuth');
 const handleCart = require('./handlers/handleCart');
 const handleDeleteItem = require('./handlers/handleDeleteItem');
 
 const router = (req, res) => {
-  const auth_routes = ['/buy', '/cart', '/items', '/history'];
+  const auth_routes = ['/buy', '/cart', '/items', '/history', '/logout'];
   const url = req.url;
 
   if (url === '/') {
@@ -34,6 +36,8 @@ const router = (req, res) => {
         handleHistory(req, res);
       } else if (url === '/cart') {
         handleCart(req, res);
+      } else if (url === '/logout') {
+        handleLogout(req, res);
       }
     }
   } else {

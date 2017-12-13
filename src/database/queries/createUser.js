@@ -16,7 +16,6 @@ const createUser = (username, firstname, lastname, address, password, cb) => {
           if (error) {
             cb(error);
           } else {
-            console.log('inside second createuuser query ', result.rows);
             cb(null, result.rows);
           }
         }
