@@ -48,6 +48,10 @@ document.querySelector('.signUp').addEventListener('submit', function(e) {
       if (err) {
         console.log('error with', err);
       } else {
+        if (res == 'username already exists') {
+          document.querySelector('#rules').textContent =
+            'username already exists';
+        }
         console.log('success with', res);
       }
     });
