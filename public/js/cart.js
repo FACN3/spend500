@@ -26,6 +26,7 @@ function renderCart(items) {
 		anchor.setAttribute('id','item_'+ item.id);
 		del.setAttribute('id','item_'+ item.id);
 		anchor.setAttribute('href','#');
+		anchor.setAttribute('onclick','deleteItem(this)');
 		inner.setAttribute('class', 'fa fa-trash');
 		anchor.appendChild(inner);
 		del.setAttribute('class', 'content__items--col');
@@ -55,15 +56,12 @@ function renderCart(items) {
 }
 
 
-document.addEventListener('click',deleteItem(this));
+
 
 
 function deleteItem(element) {
-	var id = element.id;
-	fetchGET('/del', function(error, items) {
-		if (error) {console.log(error);}
-		alert('Item deleted successfully');
-	});
+	var index = element.parentNode.parentNode.rowIndex;
+	document.querySelector('#items').deleteRow(index);;
 }
 
 
