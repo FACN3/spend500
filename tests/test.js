@@ -3,6 +3,7 @@ const build = require('../src/database/db_build.js');
 const dbConnect = require('../src/database/db_connection.js');
 const displayItems = require('../src/database/queries/displayItems.js');
 const createUser = require('../src/database/queries/createUser');
+const userexists = require('../src/database/queries/userexists');
 
 // Testing if tape is working
 tape('Is it working', t => {
@@ -66,3 +67,28 @@ tape('New user was created', t => {
     }
   });
 });
+
+tape('Check if user exists', (t) => {
+  build((err, res) => {
+    if (err) throw err;
+    else {
+      const expected_1 = true;
+      const expected_2 = false;
+      userexists('admin', (error, result) => {
+        if (error) console.log(error);
+        else {
+          console.log(result);
+          t.equals(expected_1, result, 'Query should return true for user found.');
+        }
+      })
+      userexists('KittyCat', (error, result) => {
+        if (error) console.log(error);
+        else {
+          console.log(result);
+          t.equals(expected_2, result, 'Query should return false for user not found.');
+          t.end();
+        }
+      })
+    }
+  })
+})

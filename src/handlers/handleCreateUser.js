@@ -55,7 +55,7 @@ const handleCreateUser = (req, res) => {
   req.on('err', () => {
     handleError(req, res, 404);
   });
-};
+}; 
 
 const encrypt = (str, callback) => {
   console.log('in encrypt');
