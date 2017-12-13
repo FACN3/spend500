@@ -1,6 +1,5 @@
 const connection = require('../db_connection');
 
-
 const userexists = (username,cb)=>{
 	connection.query(`SELECT 1 AS col FROM users WHERE username=$1`,
 		[username],(error,result)=>{

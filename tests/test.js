@@ -84,7 +84,6 @@ tape('Check if user exists', (t) => {
       userexists('KittyCat', (error, result) => {
         if (error) console.log(error);
         else {
-          console.log(result);
           t.equals(expected_2, result, 'Query should return false for user not found.');
           t.end();
         }

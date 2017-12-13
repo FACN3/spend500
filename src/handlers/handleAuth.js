@@ -14,11 +14,9 @@ const handleAuth = (req, res) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(decoded);
         decodedjwt = decoded;
       }
     })
-    console.log(decodedjwt);
     return decodedjwt !== null ? true : false;
   }
 }

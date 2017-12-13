@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const handleError = require('./handleError');
 
 const handleStatic = (req, res) => {
   const url = req.url;
@@ -14,7 +15,9 @@ const handleStatic = (req, res) => {
 
   const filepath = path.join(__dirname, '..', '..', 'public', url);
   fs.readFile(filepath, (err, file) => {
-    if (err) console.log(err);
+    if (err) {
+      handleError(req, res, err);
+    }
     else {
       res.writeHead(200, { 'Content-Type': types });
       res.end(file);

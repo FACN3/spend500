@@ -18,7 +18,7 @@ const handleCreateUser = (req, res) => {
     const first = qs.parse(data).first;
     const last = qs.parse(data).last;
     const address = qs.parse(data).address;
-    console.log('pass from handleCreateUser is, ', pass);
+
     userexists(user, (error, result) => {
       if (error) {
         console.log('error checking username', err);
@@ -36,9 +36,7 @@ const handleCreateUser = (req, res) => {
                   console.log('error in creating user', error);
                 } else {
                   const userid = result[0].id;
-                  console.log(userid);
                   const token = createjwt(userid);
-                  console.log('token is ', token);
                   res.writeHead(200, {
                     'Content-Type': 'text/html',
                     'set-cookie': `token=${token}`
@@ -60,12 +58,10 @@ const handleCreateUser = (req, res) => {
 };
 
 const encrypt = (str, callback) => {
-  console.log('in encrypt');
   bcrypt.genSalt(10, (err, salt) => {
     if (err) {
       callback(err);
     } else {
-      console.log('in gensalt salt is', salt);
       bcrypt.hash(str, salt, (err, res) => {
         if (err) {
           console.log('errored in hash with ', err);
@@ -84,4 +80,8 @@ const createjwt = userid => {
   return token;
 };
 
-module.exports = handleCreateUser;
+module.exports = {
+  handleCreateUser,
+  encrypt,
+  createjwt
+}
