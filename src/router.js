@@ -13,6 +13,8 @@ const router = (req, res) => {
     handleHome(req, res);
   } else if (url === '/createuser') {
     handleCreateUser(req, res);
+  } else if (url === '/login') {
+    handleLogIn(req, res);
   } else if (url === '/buy') {
     handleBuy(req, res);
   } else if (url === '/items') {
@@ -24,7 +26,6 @@ const router = (req, res) => {
   } else {
     handleStatic(req, res);
   }
-}
-
+};
 
 module.exports = router;
