@@ -76,7 +76,7 @@ const encrypt = (str, callback) => {
 const createjwt = userid => {
   const header = { alg: 'SHA256', type: 'JWT' };
   const jwtData = { userid: userid, state: 'logged_in' };
-  const token = jwt.sign(jwtData, 'secret', { expiresIn: '1h' });
+  const token = jwt.sign(jwtData, SECRET, { expiresIn: '1h' });
   return token;
 };
 
