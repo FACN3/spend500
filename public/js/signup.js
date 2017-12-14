@@ -8,12 +8,9 @@ document.querySelector('.signIn').addEventListener('submit', function(e) {
   fetchPOST('/login', data, function(err, res) {
     if (err) {
       console.log(err);
-    } else if (res === 'Username does not exist') {
-      document.querySelector('#signInRules').textContent = "Username Not Found.";
-    } else if (res === 'Wrong Password') {
-      document.querySelector('#signInRules').textContent = "Wrong Password";
-    }
-    else {
+    } else if (res === 'Username does not exist' || res === 'Wrong Password') {
+      document.querySelector('#signInRules').textContent = "Invalid Username / Password";
+    } else {
       console.log(res);
       window.location.href = '../buy.html';
     }

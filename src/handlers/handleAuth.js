@@ -1,18 +1,16 @@
-const bcrypt = require('bcryptjs');
-const qs = require('querystring');
 const handleError = require('./handleError');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
 
-const handleAuth = (req, res) => {
+const handleAuth = (req) => {
   if (!req.headers.cookie) {
     return false;
   } else {
     const token = cookie.parse(req.headers.cookie).token;
     let decodedjwt;
-    jwt.verify(token, 'secret', (err, decoded) => {
+    jwt.verify(token, SECRET, (err, decoded) => {
       if (err) {
-        console.log(err);
+        return err;
       } else {
         decodedjwt = decoded;
       }
