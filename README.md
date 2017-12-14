@@ -5,7 +5,9 @@
 ## :computer: Install Instructions :computer:
 
 Clone repo
+
 Run node db_build.js
+
 npm run dev
 
 ## WHO
