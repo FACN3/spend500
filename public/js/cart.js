@@ -43,16 +43,7 @@ function renderCart(items) {
 		
 	});
 
-	function getTotalprice() {
-		var nodelist = document.querySelectorAll('#price');
-		var arr = Array.from(nodelist);
-		var total_price =0;
-		console.log(arr[0].innerHTML);
-		arr.forEach(function (item) {
-			total_price+=Number(item.innerHTML);
-		});
-		return total_price;
-	}
+	
 	var last_row = document.createElement('tr');
 	last_row.id = 'last_row';
 	var textprice = document.createElement('td');
@@ -65,7 +56,6 @@ function renderCart(items) {
 
 	window.setInterval(function() {
 		var total = getTotalprice().toFixed(2);
-		/*document.querySelector('#t_price').innerHTML = '';*/
 		document.querySelector('#t_price').innerHTML = total;
 		
 	},500);
@@ -73,8 +63,16 @@ function renderCart(items) {
 
 }
 
-
-
+function getTotalprice() {
+		var nodelist = document.querySelectorAll('#price');
+		var arr = Array.from(nodelist);
+		var total_price =0;
+		console.log(arr[0].innerHTML);
+		arr.forEach(function (item) {
+			total_price+=Number(item.innerHTML);
+		});
+		return total_price;
+	}
 
 
 function deleteItem(element) {
@@ -83,8 +81,16 @@ function deleteItem(element) {
 
 }
 
-
-
+function buy() {
+	var amount = getTotalprice().toFixed(2);
+	if (amount>500) {
+		alert('You cannot buy items above 500');
+	} else {
+		var balance = (500-amount).toFixed(2);
+		alert('Thanks for shopping with us, your balance is: '+ '$'+balance);
+		window.location = "http://localhost:3000/buy.html";
+	}
+}
 
 fetchGET('/cart', function(err, items) {
 	if (err) {
