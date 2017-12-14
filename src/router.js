@@ -22,28 +22,29 @@ const router = (req, res) => {
   } else if (url === '/login') {
     handleLogIn(req, res);
   } else if (auth_routes.indexOf(url) !== -1) {
-    const allowed = handleAuth(req, res);
-    if (allowed === false) {
-      console.log(allowed);
-      res.writeHead(401, { Location: '/' });
-      res.end('Unauthorized user');
-    } else {
-      console.log(allowed);
-      if (url === '/buy') {
-        handleBuy(req, res);
-      } else if (url === '/items') {
-        handleItems(req, res);
-      } else if (url==='/addItem') {
-        console.log(url);
-        handleAddItem(req,res);
-      } else if (url === '/history') {
-        handleHistory(req, res);
-      } else if (url === '/cart') {
-        handleCart(req, res);
-      } else if (url === '/logout') {
-        handleLogout(req, res);
+    handleAuth(req, (err, allowed) => {
+      if  (allowed === false) {
+        console.log(allowed);
+        res.writeHead(401, { Location: '/' });
+        res.end('Unauthorized user');
+      } else {
+        console.log(allowed);
+        if (url === '/buy') {
+          handleBuy(req, res);
+        } else if (url === '/items') {
+          handleItems(req, res);
+        } else if (url==='/addItem') {
+          console.log(url);
+          handleAddItem(req,res);
+        } else if (url === '/history') {
+          handleHistory(req, res);
+        } else if (url === '/cart') {
+          handleCart(req, res);
+        } else if (url === '/logout') {
+          handleLogout(req, res);
+        }
       }
-    }
+    });
   } else {
     handleStatic(req, res);
   }
