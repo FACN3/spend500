@@ -1,11 +1,26 @@
 fetchGET('/items', function(err, items) {
   if (err) {
     console.log(err);
-  } else {
+} else {
     console.log("front", items);
     renderHome(items);
-  }
+}
 });
+
+
+function addItem(id) {
+    var item_id = id.split('_')[1];
+    console.log(item_id);
+    fetchPOST('/addItem', item_id, function(err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("front", result);
+
+        }
+    });
+}
+
 
 function renderHome(arr) {
   var itemTable = document.getElementById('items');
@@ -40,11 +55,12 @@ function renderHome(arr) {
     buy.setAttribute('href', '#');
     buy.setAttribute('class', 'items__purchase-link');
     buy.setAttribute('id', 'itemID_' + item.id);
+    buy.setAttribute('onclick', 'addItem(this.id)');
     buy.textContent = "Add to Cart";
     buyContainer.appendChild(buy);
     itemContainer.appendChild(buyContainer);
 
     //Append the new row to the table
     itemTable.appendChild(itemContainer);
-  });
+});
 }
