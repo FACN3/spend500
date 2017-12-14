@@ -16,8 +16,9 @@ function renderCart(items) {
 		row.appendChild(description);
 
 		var price = document.createElement('td');
+		price.setAttribute('id','price');
 		price.setAttribute('class', 'content__items--col');
-		price.textContent = '$' + item.price;
+		price.textContent = item.price;
 		row.appendChild(price);
 
 		var del = document.createElement('td');
@@ -38,19 +39,36 @@ function renderCart(items) {
 
 		table.appendChild(row);
 
-		total_price += Number(item.price);
+		
 		
 	});
-	var total = '$' + total_price.toFixed(2);
 
-	last_row = document.createElement('tr');
+	function getTotalprice() {
+		var nodelist = document.querySelectorAll('#price');
+		var arr = Array.from(nodelist);
+		var total_price =0;
+		console.log(arr[0].innerHTML);
+		arr.forEach(function (item) {
+			total_price+=Number(item.innerHTML);
+		});
+		return total_price;
+	}
+	var last_row = document.createElement('tr');
+	last_row.id = 'last_row';
 	var textprice = document.createElement('td');
 	var t_price = document.createElement('td');
-	t_price.textContent = total;
+	t_price.id = 't_price';
 	textprice.textContent = 'Total Price';
 	last_row.appendChild(textprice);
 	last_row.appendChild(t_price);
 	table.appendChild(last_row);
+
+	window.setInterval(function() {
+		var total = getTotalprice().toFixed(2);
+		/*document.querySelector('#t_price').innerHTML = '';*/
+		document.querySelector('#t_price').innerHTML = total;
+		
+	},500);
 
 
 }
@@ -61,7 +79,8 @@ function renderCart(items) {
 
 function deleteItem(element) {
 	var index = element.parentNode.parentNode.rowIndex;
-	document.querySelector('#items').deleteRow(index);;
+	document.querySelector('#items').deleteRow(index);
+
 }
 
 
