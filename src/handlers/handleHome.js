@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const handleError = require('./handleError');
+const jwt = require('jsonwebtoken');
 
 const handleHome = (req, res) => {
   // Landing on the page we display the html file.

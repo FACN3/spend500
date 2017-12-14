@@ -1,11 +1,10 @@
 const connection = require('../db_connection');
 
-const showcart = (username, cb) => {
+const showcart = (userid, cb) => {
   connection.query(
     `SELECT * FROM items INNER JOIN cart ON
-		items.id = cart.item_id WHERE cart.user_id IN
-		(SELECT users.id FROM users WHERE username=$1)`,
-    [username],
+		items.id = cart.item_id WHERE cart.user_id = $1`,
+    [userid],
     (error, result) => {
       if (error) {
         cb(error);
