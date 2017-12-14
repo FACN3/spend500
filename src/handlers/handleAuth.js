@@ -1,6 +1,6 @@
-const handleError = require('./handleError');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
+require('env2')('config.env');
 
 const handleAuth = (req) => {
   if (!req.headers.cookie) {
@@ -8,7 +8,7 @@ const handleAuth = (req) => {
   } else {
     const token = cookie.parse(req.headers.cookie).token;
     let decodedjwt;
-    jwt.verify(token, SECRET, (err, decoded) => {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
         return err;
       } else {
