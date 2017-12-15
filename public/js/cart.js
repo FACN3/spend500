@@ -39,11 +39,11 @@ function renderCart(items) {
 
 		table.appendChild(row);
 
-		
-		
+
+
 	});
 
-	
+
 	var last_row = document.createElement('tr');
 	last_row.id = 'last_row';
 	var textprice = document.createElement('td');
@@ -57,7 +57,7 @@ function renderCart(items) {
 	window.setInterval(function() {
 		var total = getTotalprice().toFixed(2);
 		document.querySelector('#t_price').innerHTML = total;
-		
+
 	},500);
 
 
@@ -66,7 +66,7 @@ function renderCart(items) {
 function getTotalprice() {
 		var nodelist = document.querySelectorAll('#price');
 		var arr = Array.from(nodelist);
-		var total_price =0;
+		var total_price = 0;
 		console.log(arr[0].innerHTML);
 		arr.forEach(function (item) {
 			total_price+=Number(item.innerHTML);
@@ -100,5 +100,3 @@ fetchGET('/cart', function(err, items) {
 		renderCart(items);
 	}
 });
-
-
